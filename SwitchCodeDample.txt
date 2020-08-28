@@ -1,0 +1,55 @@
+class Switch{
+	//interface - pure abstract class
+	//Dependency
+	IAppliance obj;
+	//Constructor Injection
+	Switch(IAppliance target){
+
+		this.obj=target;
+	}
+
+	setAppliance(IAppliance target){
+		this.obj=target;
+	}	
+	On(){
+		print("Switch On");
+		obj.Close();
+	}
+	Off(){
+		Print("Switch Off");
+		obj.Open();
+	}
+
+}
+//c# - interface
+//Java - interface
+//C++ - class
+class IAppliance{
+
+	Open();
+	Close();
+}
+//implements - ":" c++, C#
+class LedBulb implements IAppliance{
+
+	Close(){  //Glow(); }
+	Open(){ //Dim(); }
+}
+class CFLBulb implements IAppliance{
+
+	Close(){}
+	Open(){}
+
+}
+
+
+IAppliance _appliance=new LedBulb();
+
+Swicth  _switch=new Switch(_appliance);//Injecting Dependency Using Constructor
+_switch.On();
+
+_appliance=new CFLBulb();
+_switch.setAppliance(_appliance);
+_switch.On();
+
+
